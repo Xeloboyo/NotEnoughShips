@@ -43,13 +43,17 @@ namespace NotEnoughShips
         {
             "K", "Global"
         });
+        UIUtils.ToggleGroup VesselType = new UIUtils.ToggleGroup(new[]
+        {
+            "Vessel", "Part"
+        });
         bool populateVessel = false;
 
         RigidbodyComponent rbc = null;
         VesselBehavior vb;
 
         List<(string Name, OABPlacedAssembly assembly)> assemblies = new List<(string, OABPlacedAssembly)>();
-        (string Name, OABPlacedAssembly assembly)? selected;
+        (string Name, SerializedAssembly assembly)? selected;
 
         List<string> bodies = null;
 
@@ -94,6 +98,7 @@ namespace NotEnoughShips
                     : offsetSpawn;
                 this.transform.position = vb.transform.position+spawnLoc;
             }
+            GetComponent<MeshRenderer>().enabled = (PositionType.Get()=="Local") && displayWindow;
         }
         private Rect windowRect;
         void OnGUI()
@@ -116,6 +121,7 @@ namespace NotEnoughShips
         String vesselName = "";
         Vector2 scrollPos = new Vector2();
         Vector2 celestialScrollPos = new Vector2();
+        String searchString = "";
         private void DrawGUI(int windowID)
         {
             boxStyle = GUI.skin.GetStyle("Box");
@@ -157,7 +163,7 @@ namespace NotEnoughShips
                         var loc = KSPUtils.GetLocation(vb.Model.SimulationObject);
                         try
                         {
-                            KSPUtils.CreateVessel(KSPUtils.GetAssembly(selected?.assembly), offsetSpawn, loc, populateVessel,
+                            KSPUtils.CreateVessel(selected.Value.assembly, offsetSpawn, loc, populateVessel,
                                 vesselName);
                         }
                         catch (Exception e)
@@ -193,7 +199,7 @@ namespace NotEnoughShips
                         loc.serializedOrbit = orbit;
                         try
                         {
-                            KSPUtils.CreateVessel(KSPUtils.GetAssembly(selected?.assembly), offsetSpawn, loc, populateVessel,
+                            KSPUtils.CreateVessel(selected.Value.assembly, offsetSpawn, loc, populateVessel,
                                 vesselName);
                         }catch (Exception e)
                         {
@@ -239,7 +245,7 @@ namespace NotEnoughShips
                 GUILayout.BeginVertical(boxStyle);
                 GUILayout.Label("Body:");
                 celestialScrollPos = GUILayout.BeginScrollView(celestialScrollPos, false, true, GUILayout.Height(150),
-                    GUILayout.Width(windowWidth));
+                GUILayout.Width(windowWidth));
                 CelestialBodySelect.Display();
                 GUILayout.EndScrollView();
                 GUILayout.Label("Average Orbit Height (SM Axis):");
@@ -251,24 +257,51 @@ namespace NotEnoughShips
                 GUILayout.EndVertical();
             }
             PositionType.Display();
-            if(GUILayout.Button("Load crafts"))
+            if(VesselType.Display()=="Vessel")
             {
-                KSPUtils.GetAssemblies(assemblies);
-            }
-
-            GUILayout.BeginVertical(boxStyle);
-            scrollPos = GUILayout.BeginScrollView(scrollPos, false, true, GUILayout.Height(200), GUILayout.Width(windowWidth));
-
-            foreach (var body in assemblies)
-            {
-                if(GUILayout.Button(body.Name))
+                if(GUILayout.Button("Load crafts"))
                 {
-                    selected = body;
+                    KSPUtils.GetAssemblies(assemblies);
                 }
-            }
-            GUILayout.EndScrollView();
-            GUILayout.EndVertical();
 
+                GUILayout.BeginVertical(boxStyle);
+                scrollPos = GUILayout.BeginScrollView(scrollPos, false, true, GUILayout.Height(200),
+                    GUILayout.Width(windowWidth));
+
+                foreach (var body in assemblies)
+                {
+                    if(GUILayout.Button(body.Name))
+                    {
+                        selected = (body.Name,KSPUtils.GetAssembly(body.assembly));
+                    }
+                }
+                GUILayout.EndScrollView();
+                GUILayout.EndVertical();
+            }
+            else
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Search:");
+                searchString = GUILayout.TextArea(searchString);
+                GUILayout.EndHorizontal();
+                var parts = this.Game.Parts.AllParts();
+                scrollPos = GUILayout.BeginScrollView(scrollPos, false, true, GUILayout.Height(200),
+                    GUILayout.Width(windowWidth));
+
+                string santised = searchString.ToLower().Trim();
+                foreach (var part in parts)
+                {
+                    if(searchString!="" && !part.data.partName.ToLower().Contains(santised))
+                    {
+                        continue;
+                    }
+                    if(GUILayout.Button(part.data.partName))
+                    {
+                        selected = (part.data.partName,KSPUtils.GetSinglePartAssembly(part.data));
+                    }
+                }
+                GUILayout.EndScrollView();
+            }
             GUILayout.EndVertical();
         }
     }

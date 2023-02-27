@@ -177,11 +177,11 @@ public static class KSPUtils
         return null;
     }
 
-    public static SerializedAssembly GetSinglePartAssembly()
+    public static SerializedAssembly GetSinglePartAssembly(PartData pdata)
     {
         var assm = new SerializedAssembly();
         assm.parts = new List<SerializedPart>();
-        assm.parts.Add(GetRandomPart());
+        assm.parts.Add(GetPart(pdata));
         assm.kerbalState = new KerbalState();
         assm.vesselState = VesselState.GetDefaultStateGround();
         assm.stagingState = new StagingState();
@@ -260,11 +260,8 @@ public static class KSPUtils
             }
     }
 
-    public static SerializedPart GetRandomPart()
+    public static SerializedPart GetPart(PartData part)
     {
-        Random r = new Random();
-        var p = GameManager.Instance.Game.Parts.AllParts();
-        var part = p.ToArray()[r.Next(p.Count)].data;
         var pname = part.partName;
         NotEnoughShipsMod.ModLogger.Info("LOADING "+pname);
         SerializedPart outPart = new SerializedPart();
@@ -279,22 +276,5 @@ public static class KSPUtils
         NotEnoughShipsMod.ModLogger.Info("LOADED "+pname);
         return outPart;
     }
-
-    public static void SpawnRandomPart(Vector3 posOffset, SerializedLocation origin)
-    {
-        var assm = new SerializedAssembly();
-        assm.parts.Add(GetRandomPart());
-        assm.kerbalState = new KerbalState();
-        var r = origin.rigidbodyState.Value;
-        r.localPosition += posOffset;
-        origin.rigidbodyState = r;
-        assm.location = origin;
-        assm.vesselState = new VesselState();
-
-        // SessionManager
-        var model = GameManager.Instance.Game.SpaceSimulation.CreateVesselSimObject(assm,
-            GameManager.Instance.Game.LocalPlayer.PlayerGuidString, GameManager.Instance.Game.LocalPlayer.PlayerId,
-            GameManager.Instance.Game.LocalPlayer.PlayerId);
-        //PrintObject();
-    }
+    
 }
