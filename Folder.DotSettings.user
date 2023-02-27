@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Coding\Modding\KSP\ksp2\not_enough_ships\external_dlls\SpaceWarp.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Coding\Modding\KSP\ksp2\not_enough_ships\external_dlls\UnityEngine.UIModule.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program 2\KSP2_x64_Data\Managed\UnityEngine.InputLegacyModule.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

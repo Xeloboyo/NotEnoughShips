@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "/x0WqsSuJbWEwA2ofT++EW41SYtLDeTRENYPB5zd/lyBy4KxljKx24va8Ej0ZTjyI9P8ivNOAXFKO3RkmtEzEA==",
+  "success": true,
+  "projectFilePath": "C:\\Coding\\Modding\\KSP\\ksp2\\not_enough_ships\\NotEnoughShipsProject\\NotEnoughShips.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

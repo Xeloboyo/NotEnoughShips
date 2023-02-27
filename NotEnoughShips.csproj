@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>10</LangVersion>
+    <ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="..\external_dlls\SpaceWarp.dll" />
+    <Reference Include="..\external_dlls\UnityEngine.dll" />
+    <Reference Include="..\external_dlls\UnityEngine.CoreModule.dll" />
+    <Reference Include="..\external_dlls\Assembly-CSharp.dll" />
+    <Reference Include="..\external_dlls\NewtonSoft.Json.dll" />
+    <Reference Include="..\external_dlls\NewtonSoft.Json.dll" />
+	<Reference Include="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+	  <HintPath>..\external_dlls\Unity.Addressables.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.IMGUIModule">
+	  <HintPath>..\external_dlls\UnityEngine.IMGUIModule.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.InputLegacyModule">
+	  <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program 2\KSP2_x64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.PhysicsModule">
+	  <HintPath>..\external_dlls\UnityEngine.PhysicsModule.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.UI">
+	  <HintPath>..\..\..\..\..\..\..\Program Files\Unity 2020.3.33f1\Editor\Data\Resources\PackageManager\ProjectTemplates\libcache\com.unity.template.universal-10.8.0\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.UIModule">
+	  <HintPath>..\external_dlls\UnityEngine.UIModule.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+</Project>
