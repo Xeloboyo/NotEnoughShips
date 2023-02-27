@@ -1,5 +1,5 @@
 # NotEnoughShips
- KSP2 - Spawn Ships and stuff </br>
+ KSP2 - Spawn saved ships near your current vessel, or in a set orbit. Watch out for the kraken.
 </br>
 
 # Installation
