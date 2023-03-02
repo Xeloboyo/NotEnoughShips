@@ -15,7 +15,6 @@ C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\nets
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\UnityEngine.IMGUIModule.dll
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\UnityEngine.InputLegacyModule.dll
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\UnityEngine.PhysicsModule.dll
-C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\UnityEngine.UI.dll
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\UnityEngine.UIModule.dll
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\0Harmony.dll
 C:\Coding\Modding\KSP\ksp2\not_enough_ships\NotEnoughShipsProject\bin\Debug\netstandard2.0\Unity.TextMeshPro.dll

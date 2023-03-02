@@ -31,4 +31,19 @@ public static class Utils
             PrintObject(child.gameObject, layer+2);
         }
     }
+    public static GameObject GetChild(this GameObject m, String name)
+    {
+        foreach (Transform child in m.transform)
+        {
+            if(child.gameObject.name.ToLower()==name.ToLower())
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
+    }
+    public static GameObject GetChild(this MonoBehaviour m, String name)
+    {
+        return GetChild(m.gameObject,name);
+    }
 }

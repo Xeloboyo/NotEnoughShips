@@ -3,6 +3,7 @@ using KSP.Api;
 using KSP.Game;
 using KSP.Game.Serialization;
 using KSP.IO;
+using KSP.Messages;
 using KSP.Modules;
 using KSP.OAB;
 using KSP.Sim;
@@ -207,6 +208,8 @@ public static class KSPUtils
             }else if(origin.LocationType==LocationType.Orbit)
             {
                 var r = origin.rigidbodyState.Value;
+                r.localPosition += posOffset;
+                origin.rigidbodyState = r;
                 NotEnoughShipsMod.ModLogger.Info(r.localPosition.ToString());
             }
         }
@@ -215,7 +218,8 @@ public static class KSPUtils
             NotEnoughShipsMod.ModLogger.Info(origin.surfaceLocation.Value.objectName+","+origin.surfaceLocation.Value.parentGuid);
         }
         assm.location = origin;
-        NotEnoughShipsMod.ModLogger.Info(assm.location.rigidbodyState?.localPosition.ToString());
+        var localPos = assm.location.rigidbodyState?.localPosition;
+        var localVel = assm.location.rigidbodyState?.localVelocity;
         var game = GameManager.Instance.Game;
         NotEnoughShipsMod.ModLogger.Info("Making Vessel ");
         assm.Guid = IGGuid.Empty;
@@ -235,8 +239,10 @@ public static class KSPUtils
             throw new Exception("Vessel creation unsuccessful");
             return null;
         }
+
+        component.SimulationObject.Rigidbody.UpdatePosition( new Position(component.SimulationObject.Rigidbody.coordinateSystem, localPos.Value));
+        component.SimulationObject.Rigidbody.UpdateVelocity( new Velocity(component.SimulationObject.Rigidbody.relativeToMotion, localVel.Value));
         NotEnoughShipsMod.ModLogger.Info("D: "+GetLocation(component.SimulationObject).rigidbodyState?.localPosition.ToString());
-        //assm.Guid = component.SimulationObject.GlobalId;
         component.ApplyFlightCtrlState(new FlightCtrlStateIncremental()
         {
             mainThrottle = new float?(1f)
@@ -245,6 +251,16 @@ public static class KSPUtils
         component.ParentToInertialReferenceFrame();
         
         NotEnoughShipsMod.ModLogger.Info("DONE Making Vessel ");
+        
+        VesselCreatedMessage msg2;
+        if (game.Messages.TryCreateMessage(out msg2))
+        {
+            msg2.SerializedVessel = assm;
+            msg2.serializedLocation = assm.location;
+            msg2.vehicle = null;
+            game.Messages.Publish(msg2);
+        }
+        
         return null;
     }
 

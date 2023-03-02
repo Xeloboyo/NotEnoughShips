@@ -10,23 +10,17 @@
         "projectUniqueName": "C:\\Coding\\Modding\\KSP\\ksp2\\not_enough_ships\\NotEnoughShipsProject\\NotEnoughShips.csproj",
         "projectName": "NotEnoughShips",
         "projectPath": "C:\\Coding\\Modding\\KSP\\ksp2\\not_enough_ships\\NotEnoughShipsProject\\NotEnoughShips.csproj",
-        "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Xelo\\.nuget\\packages\\",
         "outputPath": "C:\\Coding\\Modding\\KSP\\ksp2\\not_enough_ships\\NotEnoughShipsProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Xelo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.bepinex.dev/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -57,11 +51,12 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Xelo\\.dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
